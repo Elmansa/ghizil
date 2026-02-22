@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl" class="h-full">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +11,14 @@
   <style>
     * {
       font-family: 'peyda', peyda;
+    }
+    
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
     }
     
     .video-bg {
@@ -32,6 +39,177 @@
       height: 100%;
       background: rgba(0, 0, 0, 0.55);
       z-index: -1;
+    }
+    
+    /* Intro Screen */
+    .intro-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.98) 0%, rgba(20, 30, 48, 0.98) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      animation: fadeOutIntro 0.8s ease-out 3.5s forwards;
+    }
+    
+    @keyframes fadeOutIntro {
+      from {
+        opacity: 1;
+        visibility: visible;
+      }
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+    
+    .intro-container {
+      text-align: center;
+      position: relative;
+    }
+    
+    .intro-logo-wrapper {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 30px;
+    }
+    
+    .intro-logo {
+      width: 100%;
+      height: 100%;
+      animation: logoZoomIn 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    
+    @keyframes logoZoomIn {
+      0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+      }
+    }
+    
+    .intro-logo-glow {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      filter: drop-shadow(0 0 30px rgba(74, 222, 128, 0.6));
+      animation: glowPulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes glowPulse {
+      0%, 100% {
+        filter: drop-shadow(0 0 20px rgba(74, 222, 128, 0.4));
+      }
+      50% {
+        filter: drop-shadow(0 0 40px rgba(74, 222, 128, 0.8));
+      }
+    }
+    
+    .intro-text {
+      animation: textFadeInUp 0.8s ease-out 0.6s forwards;
+      opacity: 0;
+    }
+    
+    @keyframes textFadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .intro-brand {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 10px;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+    
+    .intro-tagline {
+      font-size: 1.2rem;
+      color: #4ade80;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+    
+    .loading-dots {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      animation: dotsSlideUp 0.8s ease-out 1.4s forwards;
+      opacity: 0;
+    }
+    
+    @keyframes dotsSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: dotBounce 1.4s ease-in-out infinite;
+    }
+    
+    .dot:nth-child(1) {
+      animation-delay: 0s;
+    }
+    
+    .dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    
+    .dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    
+    @keyframes dotBounce {
+      0%, 100% {
+        opacity: 0.4;
+        transform: translateY(0);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(-10px);
+      }
+    }
+    
+    /* Main Content */
+    .main-content {
+      animation: contentFadeIn 0.8s ease-out 3.5s forwards;
+      opacity: 0;
+    }
+    
+    @keyframes contentFadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
     
     .glass-card {
@@ -103,8 +281,34 @@
   <!-- Dark Overlay -->
   <div class="overlay"></div>
   
+  <!-- Intro Screen with Animated Logo -->
+  <div class="intro-screen">
+    <div class="intro-container">
+      <div class="intro-logo-wrapper">
+        <img 
+          src="BARCHASB.G.GOUL.B.png"
+          alt="لوگو گلخانه" 
+          class="intro-logo"
+          loading="lazy"
+        >
+        <div class="intro-logo-glow"></div>
+      </div>
+      
+      <div class="intro-text">
+        <h1 class="intro-brand">گلخانه قیزیل گل</h1>
+        <p class="intro-tagline">زیبایی طبیعت در کنار شما</p>
+      </div>
+      
+      <div class="loading-dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+  </div>
+  
   <!-- Main Content -->
-  <main class="w-full h-full overflow-auto">
+  <main class="main-content w-full h-full overflow-auto">
     <div class="min-h-full flex flex-col items-center justify-center px-4 py-12">
       
       <!-- Logo -->
@@ -201,124 +405,5 @@
           </a>
           
           <!-- Instagram -->
-          <a href="instagram://user?username=Gizil_gooul" target="_blank" rel="noopener noreferrer"
-             class="social-btn w-14 h-14 rounded-2xl flex items-center justify-center"
-             style="background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);">
-            <svg class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-            </svg>
-          </a>
-          
-        </div>
-      </div>
-      
-      <!-- Footer -->
-      <p class="text-white/40 text-sm mt-10 animate-fade-in opacity-0 delay-5">
-        © تمامی حقوق محفوظ است - گلخانه سبز ۱۴۰۳
-      </p>
-      
-    </div>
-  </main>
-  
-  <script>
-    const defaultConfig = {
-      brand_name:'گلخانه قیزیل گل',
-      location_text: 'تبریز، ۵۰۰متر مانده به پلیس راه خسروشاه به سمت تبریز، روبروی پمپ بنزین بارانلو ، پشت سنگبری یکتا، گلخانه قیزیل گول',
-      phone_text: '09149733406',
-      hours_text: '۹:۰۰ الی ۱۹:۰۰',
-      description_text: 'گلخانه قیزیل‌گل با تمرکز بر پرورش گل‌ها و گیاهان باکیفیت، فضایی سرشار از طراوت و زیبایی ایجاد می‌کند. این مجموعه با بهره‌گیری از روش‌های نوین گلخانه‌ای و توجه به سلامت گیاهان، محصولاتی شاداب و ماندگار ارائه می‌دهد و تلاش دارد رضایت و اعتماد مشتریان را در اولویت قرار دهد.',
-      primary_color: '#22c55e',
-      secondary_color: '#16a34a',
-      text_color: '#ffffff',
-      overlay_color: '#000000',
-      accent_color: '#4ade80'
-    };
-    
-    async function onConfigChange(config) {
-      document.getElementById('brand-name').textContent = config.brand_name || defaultConfig.brand_name;
-      document.getElementById('location-text').textContent = config.location_text || defaultConfig.location_text;
-      document.getElementById('phone-text').textContent = config.phone_text || defaultConfig.phone_text;
-      document.getElementById('hours-text').textContent = config.hours_text || defaultConfig.hours_text;
-      document.getElementById('description-text').textContent = config.description_text || defaultConfig.description_text;
-      
-      // Apply colors
-      const primaryColor = config.primary_color || defaultConfig.primary_color;
-      const textColor = config.text_color || defaultConfig.text_color;
-      const accentColor = config.accent_color || defaultConfig.accent_color;
-      
-      document.getElementById('brand-name').style.color = textColor;
-      
-      const infoIcons = document.querySelectorAll('.info-icon');
-      infoIcons.forEach(icon => {
-        icon.style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${config.secondary_color || defaultConfig.secondary_color} 100%)`;
-      });
-    }
-    
-    function mapToCapabilities(config) {
-      return {
-        recolorables: [
-          {
-            get: () => config.overlay_color || defaultConfig.overlay_color,
-            set: (value) => {
-              config.overlay_color = value;
-              document.querySelector('.overlay').style.background = `rgba(${hexToRgb(value)}, 0.55)`;
-              if (window.elementSdk) window.elementSdk.setConfig({ overlay_color: value });
-            }
-          },
-          {
-            get: () => config.primary_color || defaultConfig.primary_color,
-            set: (value) => {
-              config.primary_color = value;
-              if (window.elementSdk) window.elementSdk.setConfig({ primary_color: value });
-            }
-          },
-          {
-            get: () => config.text_color || defaultConfig.text_color,
-            set: (value) => {
-              config.text_color = value;
-              if (window.elementSdk) window.elementSdk.setConfig({ text_color: value });
-            }
-          },
-          {
-            get: () => config.accent_color || defaultConfig.accent_color,
-            set: (value) => {
-              config.accent_color = value;
-              if (window.elementSdk) window.elementSdk.setConfig({ accent_color: value });
-            }
-          }
-        ],
-        borderables: [],
-        fontEditable: undefined,
-        fontSizeable: undefined
-      };
-    }
-    
-    function mapToEditPanelValues(config) {
-      return new Map([
-        ['brand_name', config.brand_name || defaultConfig.brand_name],
-        ['location_text', config.location_text || defaultConfig.location_text],
-        ['phone_text', config.phone_text || defaultConfig.phone_text],
-        ['hours_text', config.hours_text || defaultConfig.hours_text],
-        ['description_text', config.description_text || defaultConfig.description_text]
-      ]);
-    }
-    
-    function hexToRgb(hex) {
-      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-      return result 
-        ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`
-        : '0, 0, 0';
-    }
-    
-    // Initialize SDK
-    if (window.elementSdk) {
-      window.elementSdk.init({
-        defaultConfig,
-        onConfigChange,
-        mapToCapabilities,
-        mapToEditPanelValues
-      });
-    }
-  </script>
-</body>
-</html>
+       </svg></a> <!-- Instagram --> <a href="instagram://user?username=Gizil_gooul" target="_blank" rel="noopener noreferrer" class="social-btn w-14 h-14 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);">
+       <svg class="w-7 h-7 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
